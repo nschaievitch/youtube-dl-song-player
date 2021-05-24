@@ -53,8 +53,10 @@ const downloadSongFromID = async (id) => {
 
 
 const searchFromQuery = async (query) => {
-  const res = await api.search(query)
+  let res = await api.search(query, "song")
+  let res2 = await api.search(query, "video")
   console.log(res)
+  res.content = res.content.concat(res2.content)
   const ret = res.content.filter(t => t.type == "video" || t.type == "song").map(t => {
     if (t.type == "song") artist = t.artist.name;
     else artist = t.author
