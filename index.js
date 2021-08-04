@@ -58,7 +58,10 @@ const searchFromQuery = async (query) => {
   console.log(res)
   res.content = res.content.concat(res2.content)
   const ret = res.content.filter(t => t.type == "video" || t.type == "song").map(t => {
-    if (t.type == "song") artist = t.artist.name;
+    if (t.type == "song") {
+        if (Array.isArray(t.artist)) artist = t.artist.map(a => a.name).join(", ")
+        else artist = t.artist.name;
+    }
     else artist = t.author
     return new Song(t.videoId, t.name, artist, t.thumbnails, t.duration)
   })
