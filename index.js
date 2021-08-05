@@ -39,7 +39,7 @@ const downloadSongFromID = async (id) => {
 
   await youtubedl(`https://www.youtube.com/watch?v=${id}`, {
     noCallHome: true,
-    format: "bestaudio",
+    format: "worstaudio",
     output: `./songs/${id}.webm`,
     youtubeSkipDashManifest: true,
     referer: 'https://youtube.com',
