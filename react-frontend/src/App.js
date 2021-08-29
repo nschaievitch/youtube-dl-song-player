@@ -9,7 +9,7 @@ import { MdQueueMusic } from "react-icons/md";
 import "./App.scss";
 
 //const BASE_URL = "/api"
-const BASE_URL = "http://192.168.68.102:5000/api";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function App() {
     const [songs, setSongs] = useState([]);
