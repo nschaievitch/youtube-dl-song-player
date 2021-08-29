@@ -1,0 +1,39 @@
+@import "../colors.scss";
+
+.searchBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    padding: 1rem;
+
+    input[type="text"] {
+        background-color: $dark-grey-2;
+        border: none;
+        padding: 0.7rem;
+        color: $light-grey;
+        font-size: 1rem;
+        width: 80vw;
+        max-width: 768px;
+        border-radius: 2px;
+        height: 3rem;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        background-color: $dark-grey-2;
+        border: none;
+        width: 3rem;
+        height: 3rem;
+        margin-left: 1rem;
+        border-radius: 50%;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

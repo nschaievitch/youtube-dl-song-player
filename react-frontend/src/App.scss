@@ -1,0 +1,69 @@
+/* @use "~react-h5-audio-player/src/styles.scss" with (
+    $rhap_theme-color: #868686,
+    $rhap_background-color: #fff,
+    $rhap_bar-color: #dddddd,
+    $rhap_time-color: #333,
+    $rhap_font-family: inherit
+); */
+
+@import "./colors.scss";
+
+$rhap_theme-color: $primary-color;
+$rhap_background-color: $dark-grey-1;
+$rhap_bar-color: $dark-grey-2;
+$rhap_time-color: $light-grey;
+
+@import "~react-h5-audio-player/src/styles.scss";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $dark-grey-1;
+}
+
+#audioPlayer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.rhap_container {
+    box-shadow: 0 0 3px 0px rgba(255, 255, 255, 0.2);
+}
+
+.rhap_header {
+    color: $light-grey;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+main {
+    margin: auto;
+    width: 90%;
+    max-width: 1024px;
+    padding-bottom: 12vh;
+    color: $light-grey;
+}
+
+.svg-icon {
+    fill: $light-grey;
+    width: 26px;
+    height: 26px;
+    margin-right: 5px;
+
+    &:hover {
+        cursor: pointer;
+        opacity: .9;
+    }
+}
+
+.clickableText{
+    &:hover {
+        cursor: pointer;
+        opacity: .9;
+    }
+}

@@ -1,3 +1,4 @@
-node_modules/
-package-lock.json
-songs/
+*/node_modules/
+node-backend/songs/
+react-frontend/build
+node-backend/build
