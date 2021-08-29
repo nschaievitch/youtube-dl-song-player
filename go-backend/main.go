@@ -25,12 +25,14 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Printf("searching %s...", q)
+	fmt.Printf("searching %s...\n", q)
 	jsonRep, err := json.Marshal(SearchQuery(q[0]))
 
 	check(err)
 
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
+
 	fmt.Fprint(w, string(jsonRep))
 }
 
@@ -43,15 +45,18 @@ func audioHandler(w http.ResponseWriter, r *http.Request) {
 
 	videoId := pathParts[2]
 
-	fmt.Printf("downloadind %s...", videoId)
+	fmt.Printf("downloading %s...\n", videoId)
 
 	err := DownloadVideo(videoId)
+
+	fmt.Println("done")
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/octet-stream")
 
 	fileBytes, err := ioutil.ReadFile("audio.webm")
@@ -63,9 +68,12 @@ func audioHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fs := http.FileServer(http.Dir("./build"))
+
 	http.HandleFunc("/search", searchHandler)
 	http.HandleFunc("/song/", audioHandler)
+	http.Handle("/", fs)
 	//time.Sleep(time.Hour)
-	fmt.Println("listening on port 3000")
-	http.ListenAndServe("0.0.0.0:3000", nil)
+	fmt.Println("listening on port 5000")
+	http.ListenAndServe("0.0.0.0:5000", nil)
 }

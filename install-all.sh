@@ -9,3 +9,5 @@ cd ../react-frontend && npm i
 REACT_APP_BASE_URL=/api npm run build
 
 cp build/ ../node-backend -r
+
+cd ../go-backend && go get

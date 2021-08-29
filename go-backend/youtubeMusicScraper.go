@@ -27,17 +27,17 @@ import (
 )
 
 type Thumbnail struct {
-	Url    string `json:url`
-	Width  int    `json:width`
-	Height int    `json:height`
+	Url    string `json:"url"`
+	Width  int    `json:"width"`
+	Height int    `json:"height"`
 }
 
 type Song struct {
-	VideoID   string    `json:videoId`
-	Name      string    `json:name`
-	Artist    string    `json:artist`
-	Thumbnail Thumbnail `json:thumbnail`
-	Duration  int       `json:duration`
+	VideoID   string    `json:"videoId"`
+	Name      string    `json:"name"`
+	Artist    string    `json:"artist"`
+	Thumbnail Thumbnail `json:"thumbnail"`
+	Duration  int       `json:"duration"`
 }
 
 func (song Song) Download() (err error) {
@@ -97,6 +97,8 @@ func SearchQuery(query string) []Song {
 
 		songs = append(songs, song)
 	}
+
+	page.Close()
 
 	return songs
 }
