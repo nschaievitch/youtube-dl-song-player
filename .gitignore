@@ -2,3 +2,4 @@
 node-backend/songs/
 react-frontend/build
 node-backend/build
+go-backend/audio.webm
