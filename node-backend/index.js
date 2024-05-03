@@ -2,6 +2,10 @@ const youtubedl = require('youtube-dl-exec')
 const YoutubeMusicApi = require('youtube-music-api')
 const fs = require("fs").promises
 const cors = require("cors")
+require("dotenv").config()
+
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec)
 
 const express = require("express")
 const app = express();
@@ -37,6 +41,9 @@ const downloadSongFromID = async (id) => {
   console.log(id, present)
   if (id in present) return id;
 
+  await exec(`${process.env.YOUTUBE_DL || "youtube-dl"} https://www.youtube.com/watch?v=${id} --youtube-skip-dash-manifest --format worstaudio --output ./songs/${id}.webm`)
+
+  /*
   await youtubedl(`https://www.youtube.com/watch?v=${id}`, {
     noCallHome: true,
     format: "worstaudio",
@@ -45,6 +52,7 @@ const downloadSongFromID = async (id) => {
     referer: 'https://youtube.com',
     verbose: true
   })
+  */
 
   present[id] = true;
 
@@ -79,6 +87,7 @@ app.get("/api/search", async (req, res) => {
     return
   }
   
+  console.log("searching for " + req.query.q)
   res.json(await searchFromQuery(req.query.q))
 })
 
